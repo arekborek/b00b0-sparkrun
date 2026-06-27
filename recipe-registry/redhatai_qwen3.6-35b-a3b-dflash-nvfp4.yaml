@@ -1,0 +1,50 @@
+description: RedHatAI/Qwen3.6-35B-A3B-NVFP4
+model: RedHatAI/Qwen3.6-35B-A3B-NVFP4
+container: ghcr.io/spark-arena/dgx-vllm-eugr-nightly-tf5:latest
+mods:
+  - mods/fix-qwen3.5-autoround
+  - mods/fix-qwen3-coder-next
+defaults:
+  port: 8000
+  host: 0.0.0.0
+  gpu_memory_utilization: 0.7
+  max_model_len: 262144
+  max_num_batched_tokens: 32768
+  max_num_seqs: 8
+env:
+  FLASHINFER_DISABLE_VERSION_CHECK: "1"
+  VLLM_HTTP_TIMEOUT_KEEP_ALIVE: "600"
+  VLLM_MARLIN_USE_ATOMIC_ADD: "1"
+  VLLM_TUNED_CONFIG_FOLDER: /workspace/moe-configs
+  TORCH_MATMUL_PRECISION: high
+  NVIDIA_FORWARD_COMPAT: "1"
+  VLLM_TEST_FORCE_FP8_MARLIN: "1"
+command: |
+  vllm serve RedHatAI/Qwen3.6-35B-A3B-NVFP4 \
+    --host {host} \
+    --port {port} \
+    --served-model-name 'redhatai/qwen3.6-35b-a3b' \
+    --language-model-only \
+    --max-model-len {max_model_len} \
+    --max-num-batched-tokens {max_num_batched_tokens} \
+    --max-num-seqs {max_num_seqs} \
+    --gpu-memory-utilization {gpu_memory_utilization} \
+    --dtype auto \
+    --kv-cache-dtype auto \
+    --load-format fastsafetensors \
+    --attention-backend flash_attn \
+    --enable-prefix-caching \
+    --enable-chunked-prefill \
+    --trust-remote-code \
+    --quantization compressed-tensors \
+    --reasoning-parser qwen3 \
+    --enable-auto-tool-choice \
+    --tool-call-parser qwen3_coder \
+    --optimization-level 3 \
+    --performance-mode throughput \
+    --default-chat-template-kwargs '{"preserve_thinking":true}' \
+    --speculative-config '{"method":"dflash","model":"z-lab/Qwen3.6-35B-A3B-DFlash","num_speculative_tokens":15}' \
+    --override-generation-config '{"temperature":0.5,"top_p":0.95,"top_k":20,"min_p":0.0,"presence_penalty":0.0,"repetition_penalty":1.0}'
+recipe_version: "1"
+cluster_only: false
+solo_only: false
