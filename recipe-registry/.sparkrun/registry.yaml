@@ -1,0 +1,5 @@
+registries:
+  - name: arek
+    description: arekborek registry for recipes
+    recipes: recipe-registry
+    visible: true
