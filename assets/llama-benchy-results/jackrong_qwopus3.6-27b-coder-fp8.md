@@ -1,92 +1,84 @@
-arek@DESKTOP-15MQGOE llama-benchy % source .venv/bin/activate                   
-(llama-benchy) arek@DESKTOP-15MQGOE llama-benchy % llama-benchy --base-url "http://gx10-d2cf.local:4000/v1" --model "Jackrong/Qwopus3.6-27B-Coder-FP8" --concurrency=4
-[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+(llama-benchy) arek@DESKTOP-15MQGOE llama-benchy % llama-benchy --base-url "http://gx10-d2cf.local:4000/v1" --model "jackrong/qwopus3.6-27b-coder" --concurrency=1
 llama-benchy (0.3.8.dev2+gff162bcfc)
-Date: 2026-06-25 15:25:26
-Benchmarking model: Jackrong/Qwopus3.6-27B-Coder-FP8 at http://gx10-d2cf.local:4000/v1
-Concurrency levels: [4]
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-config.json: 51.7kB [00:00, 68.1MB/s]
-tokenizer_config.json: 12.1kB [00:00, 18.2MB/s]
-tokenizer.json: 100%|██████████████████████████████████████████████████████████████| 20.0M/20.0M [00:02<00:00, 9.07MB/s]
-chat_template.jinja: 4.72kB [00:00, 7.97MB/s]
+Date: 2026-07-19 19:37:22
+Benchmarking model: jackrong/qwopus3.6-27b-coder at http://gx10-d2cf.local:4000/v1
+Concurrency levels: [1]
 Loading text from cache: /Users/arek/.cache/llama-benchy/cc6a0b5782734ee3b9069aa3b64cc62c.txt
 Total tokens available in text corpus: 144480
 Warming up...
 Warmup (User only) complete. Delta: 9 tokens (Server: 30, Local: 21)
-Warmup (System+Empty) complete. Delta: 14 tokens (Server: 35, Local: 21)
+Warmup (System+Probe) complete. Delta: 14 tokens (Server: 36, Local context: 21, Probe: 1)
 
 Running coherence test...
 Coherence test PASSED.
 Measuring latency using mode: api...
-Average latency (api): 3.99 ms
-Running test: pp=2048, tg=32, depth=0, concurrency=4
-  Warmup (batch size 4)...
-  Run 1/3 (batch size 4)...
-  Run 2/3 (batch size 4)...
-  Run 3/3 (batch size 4)...
+Average latency (api): 2.59 ms
+Running test: pp=2048, tg=32, depth=0, concurrency=1
+  Warmup 1/1 (batch size 1)...
+  Run 1/3 (batch size 1)...
+  Run 2/3 (batch size 1)...
+  Run 3/3 (batch size 1)...
 Printing results in MD format:
 
 
 
-| model                            |        test |     t/s (total) |      t/s (req) |     peak t/s |   peak t/s (req) |          ttfr (ms) |       est_ppt (ms) |      e2e_ttft (ms) |
-|:---------------------------------|------------:|----------------:|---------------:|-------------:|-----------------:|-------------------:|-------------------:|-------------------:|
-| Jackrong/Qwopus3.6-27B-Coder-FP8 | pp2048 (c4) | 596.67 ± 134.95 | 149.69 ± 33.99 |              |                  | 14347.93 ± 2910.60 | 14343.94 ± 2910.60 | 14347.93 ± 2910.60 |
-| Jackrong/Qwopus3.6-27B-Coder-FP8 |   tg32 (c4) |    51.81 ± 3.15 |   14.77 ± 1.21 | 63.67 ± 2.49 |     17.08 ± 1.26 |                    |                    |                    |
+| model                        |   test |           t/s |     peak t/s |      ttfr (ms) |   est_ppt (ms) |   e2e_ttft (ms) |
+|:-----------------------------|-------:|--------------:|-------------:|---------------:|---------------:|----------------:|
+| jackrong/qwopus3.6-27b-coder | pp2048 | 644.37 ± 1.04 |              | 3182.44 ± 5.15 | 3179.85 ± 5.15 |  3182.44 ± 5.15 |
+| jackrong/qwopus3.6-27b-coder |   tg32 |  17.71 ± 2.01 | 19.00 ± 0.82 |                |                |                 |
 
 llama-benchy (0.3.8.dev2+gff162bcfc)
-date: 2026-06-25 15:25:26 | latency mode: api
-(llama-benchy) arek@DESKTOP-15MQGOE llama-benchy % llama-benchy --base-url "http://gx10-d2cf.local:4000/v1" --model "Jackrong/Qwopus3.6-27B-Coder-FP8" --concurrency=4
-[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+date: 2026-07-19 19:37:22 | latency mode: api
+(llama-benchy) arek@DESKTOP-15MQGOE llama-benchy % llama-benchy --base-url "http://gx10-d2cf.local:4000/v1" --model "jackrong/qwopus3.6-27b-coder" --concurrency=1
 llama-benchy (0.3.8.dev2+gff162bcfc)
-Date: 2026-06-25 15:27:03
-Benchmarking model: Jackrong/Qwopus3.6-27B-Coder-FP8 at http://gx10-d2cf.local:4000/v1
-Concurrency levels: [4]
+Date: 2026-07-19 19:37:52
+Benchmarking model: jackrong/qwopus3.6-27b-coder at http://gx10-d2cf.local:4000/v1
+Concurrency levels: [1]
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Loading text from cache: /Users/arek/.cache/llama-benchy/cc6a0b5782734ee3b9069aa3b64cc62c.txt
 Total tokens available in text corpus: 144480
 Warming up...
 Warmup (User only) complete. Delta: 9 tokens (Server: 30, Local: 21)
-Warmup (System+Empty) complete. Delta: 14 tokens (Server: 35, Local: 21)
+Warmup (System+Probe) complete. Delta: 14 tokens (Server: 36, Local context: 21, Probe: 1)
 
 Running coherence test...
 Coherence test PASSED.
 Measuring latency using mode: api...
-Average latency (api): 4.40 ms
-Running test: pp=2048, tg=32, depth=0, concurrency=4
-  Warmup (batch size 4)...
-  Run 1/3 (batch size 4)...
-  Run 2/3 (batch size 4)...
-  Run 3/3 (batch size 4)...
+Average latency (api): 4.44 ms
+Running test: pp=2048, tg=32, depth=0, concurrency=1
+  Warmup 1/1 (batch size 1)...
+  Run 1/3 (batch size 1)...
+  Run 2/3 (batch size 1)...
+  Run 3/3 (batch size 1)...
 Printing results in MD format:
 
 
 
-| model                            |        test |   t/s (total) |     t/s (req) |     peak t/s |   peak t/s (req) |        ttfr (ms) |     est_ppt (ms) |    e2e_ttft (ms) |
-|:---------------------------------|------------:|--------------:|--------------:|-------------:|-----------------:|-----------------:|-----------------:|-----------------:|
-| Jackrong/Qwopus3.6-27B-Coder-FP8 | pp2048 (c4) | 469.54 ± 0.33 | 117.69 ± 0.47 |              |                  | 17416.66 ± 69.56 | 17412.26 ± 69.56 | 17416.66 ± 69.56 |
-| Jackrong/Qwopus3.6-27B-Coder-FP8 |   tg32 (c4) |  54.00 ± 1.57 |  15.17 ± 0.88 | 64.67 ± 2.36 |     18.00 ± 1.22 |                  |                  |                  |
+| model                        |   test |           t/s |     peak t/s |      ttfr (ms) |   est_ppt (ms) |   e2e_ttft (ms) |
+|:-----------------------------|-------:|--------------:|-------------:|---------------:|---------------:|----------------:|
+| jackrong/qwopus3.6-27b-coder | pp2048 | 642.24 ± 1.85 |              | 3195.36 ± 8.54 | 3190.92 ± 8.54 |  3195.36 ± 8.54 |
+| jackrong/qwopus3.6-27b-coder |   tg32 |  17.50 ± 0.69 | 19.33 ± 1.25 |                |                |                 |
 
 llama-benchy (0.3.8.dev2+gff162bcfc)
-date: 2026-06-25 15:27:03 | latency mode: api
-(llama-benchy) arek@DESKTOP-15MQGOE llama-benchy % llama-benchy --base-url "http://gx10-d2cf.local:4000/v1" --model "Jackrong/Qwopus3.6-27B-Coder-FP8" --concurrency=4
-[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+date: 2026-07-19 19:37:52 | latency mode: api
+(llama-benchy) arek@DESKTOP-15MQGOE llama-benchy % llama-benchy --base-url "http://gx10-d2cf.local:4000/v1" --model "jackrong/qwopus3.6-27b-coder" --concurrency=4
 llama-benchy (0.3.8.dev2+gff162bcfc)
-Date: 2026-06-25 15:29:28
-Benchmarking model: Jackrong/Qwopus3.6-27B-Coder-FP8 at http://gx10-d2cf.local:4000/v1
+Date: 2026-07-19 19:38:33
+Benchmarking model: jackrong/qwopus3.6-27b-coder at http://gx10-d2cf.local:4000/v1
 Concurrency levels: [4]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Loading text from cache: /Users/arek/.cache/llama-benchy/cc6a0b5782734ee3b9069aa3b64cc62c.txt
 Total tokens available in text corpus: 144480
 Warming up...
 Warmup (User only) complete. Delta: 9 tokens (Server: 30, Local: 21)
-Warmup (System+Empty) complete. Delta: 14 tokens (Server: 35, Local: 21)
+Warmup (System+Probe) complete. Delta: 14 tokens (Server: 36, Local context: 21, Probe: 1)
 
 Running coherence test...
 Coherence test PASSED.
 Measuring latency using mode: api...
-Average latency (api): 3.21 ms
+Average latency (api): 3.68 ms
 Running test: pp=2048, tg=32, depth=0, concurrency=4
-  Warmup (batch size 4)...
+  Warmup 1/1 (batch size 4)...
   Run 1/3 (batch size 4)...
   Run 2/3 (batch size 4)...
   Run 3/3 (batch size 4)...
@@ -94,11 +86,43 @@ Printing results in MD format:
 
 
 
-| model                            |        test |   t/s (total) |     t/s (req) |     peak t/s |   peak t/s (req) |        ttfr (ms) |     est_ppt (ms) |    e2e_ttft (ms) |
-|:---------------------------------|------------:|--------------:|--------------:|-------------:|-----------------:|-----------------:|-----------------:|-----------------:|
-| Jackrong/Qwopus3.6-27B-Coder-FP8 | pp2048 (c4) | 470.27 ± 0.30 | 117.86 ± 0.46 |              |                  | 17385.93 ± 70.29 | 17382.71 ± 70.29 | 17385.93 ± 70.29 |
-| Jackrong/Qwopus3.6-27B-Coder-FP8 |   tg32 (c4) |  56.47 ± 3.05 |  16.38 ± 1.10 | 70.00 ± 1.41 |     18.17 ± 1.07 |                  |                  |                  |
+| model                        |        test |   t/s (total) |     t/s (req) |     peak t/s |   peak t/s (req) |        ttfr (ms) |     est_ppt (ms) |    e2e_ttft (ms) |
+|:-----------------------------|------------:|--------------:|--------------:|-------------:|-----------------:|-----------------:|-----------------:|-----------------:|
+| jackrong/qwopus3.6-27b-coder | pp2048 (c4) | 476.35 ± 0.61 | 119.42 ± 0.55 |              |                  | 17161.61 ± 77.89 | 17157.93 ± 77.89 | 17161.61 ± 77.89 |
+| jackrong/qwopus3.6-27b-coder |   tg32 (c4) |  53.20 ± 6.14 |  16.83 ± 2.44 | 70.67 ± 5.31 |     19.50 ± 2.96 |                  |                  |                  |
 
 llama-benchy (0.3.8.dev2+gff162bcfc)
-date: 2026-06-25 15:29:28 | latency mode: api
+date: 2026-07-19 19:38:33 | latency mode: api
+(llama-benchy) arek@DESKTOP-15MQGOE llama-benchy % llama-benchy --base-url "http://gx10-d2cf.local:4000/v1" --model "jackrong/qwopus3.6-27b-coder" --concurrency=4
+llama-benchy (0.3.8.dev2+gff162bcfc)
+Date: 2026-07-19 19:40:08
+Benchmarking model: jackrong/qwopus3.6-27b-coder at http://gx10-d2cf.local:4000/v1
+Concurrency levels: [4]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading text from cache: /Users/arek/.cache/llama-benchy/cc6a0b5782734ee3b9069aa3b64cc62c.txt
+Total tokens available in text corpus: 144480
+Warming up...
+Warmup (User only) complete. Delta: 9 tokens (Server: 30, Local: 21)
+Warmup (System+Probe) complete. Delta: 14 tokens (Server: 36, Local context: 21, Probe: 1)
+
+Running coherence test...
+Coherence test PASSED.
+Measuring latency using mode: api...
+Average latency (api): 4.52 ms
+Running test: pp=2048, tg=32, depth=0, concurrency=4
+  Warmup 1/1 (batch size 4)...
+  Run 1/3 (batch size 4)...
+  Run 2/3 (batch size 4)...
+  Run 3/3 (batch size 4)...
+Printing results in MD format:
+
+
+
+| model                        |        test |     t/s (total) |      t/s (req) |     peak t/s |   peak t/s (req) |          ttfr (ms) |       est_ppt (ms) |      e2e_ttft (ms) |
+|:-----------------------------|------------:|----------------:|---------------:|-------------:|-----------------:|-------------------:|-------------------:|-------------------:|
+| jackrong/qwopus3.6-27b-coder | pp2048 (c4) | 590.01 ± 121.97 | 148.04 ± 30.74 |              |                  | 14402.39 ± 2698.41 | 14397.86 ± 2698.41 | 14402.39 ± 2698.41 |
+| jackrong/qwopus3.6-27b-coder |   tg32 (c4) |    53.45 ± 1.43 |   15.80 ± 1.95 | 68.00 ± 4.55 |     17.92 ± 1.44 |                    |                    |                    |
+
+llama-benchy (0.3.8.dev2+gff162bcfc)
+date: 2026-07-19 19:40:08 | latency mode: api
 (llama-benchy) arek@DESKTOP-15MQGOE llama-benchy % 

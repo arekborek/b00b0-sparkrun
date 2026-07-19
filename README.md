@@ -58,18 +58,16 @@ All results on a single DGX GX10 · `pp=2048, tg=32` · averages across runs.
 
 | Recipe | Results | pp2048 c=1 | tg32 c=1 | pp2048 c=4 | tg32 c=4 |
 |--------|---------|:----------:|:--------:|:----------:|:--------:|
-| [nvidia_qwen3.6-35b-a3b-nvfp4.yaml](recipe-registry/nvidia_qwen3.6-35b-a3b-nvfp4.yaml) | [📊](assets/llama-benchy-results/nvidia_qwen3.6-35b-a3b-nvfp4.md) | 2823.2 | 108.1 | 5605.2 | 257.5 |
-| [redhatai_qwen3.6-35b-a3b-dflash-nvfp4.yaml](recipe-registry/redhatai_qwen3.6-35b-a3b-dflash-nvfp4.yaml) | [📊](assets/llama-benchy-results/redhatai_qwen3.6-35b-a3b-dflash-nvfp4.md) | 5197.7 | 119.3 | 6127.9 | 165.8 |
+| [nvidia_qwen3.6-35b-a3b-nvfp4.yaml](recipe-registry/nvidia_qwen3.6-35b-a3b-nvfp4.yaml) | [📊](assets/llama-benchy-results/nvidia_qwen3.6-35b-a3b-nvfp4.md) | 4866.0 | 106.7 | 6210.3 | 251.7 |
+| [qwen3.6-35b-a3b-autoround-int4-dflash-vllm-cipherfoxie.yaml](https://github.com/spark-arena/community-recipe-registry/blob/main/recipes/qwen3.6-35b-a3b/cipherfoxie/qwen3.6-35b-a3b-autoround-int4-dflash-vllm-cipherfoxie.yaml) | [📊](assets/llama-benchy-results/@community_qwen3.6-35b-a3b-autoround-int4-dflash-vllm-cipherfoxie.md) | 4790.0 | 69.9 | 5867.2 | 138.1 |
 | [prismascout_qwen3.6-27b-nvfp4.yaml](recipe-registry/prismascout_qwen3.6-27b-nvfp4.yaml) | [📊](assets/llama-benchy-results/prismascout_qwen3.6-27b-nvfp4.md) | 1942.1 | 25.9 | 2362.8 | 92.8 |
 | [qwen3.6-27b-fp8-dflash-512k-vllm.yaml](https://github.com/spark-arena/recipe-registry/blob/main/experimental-recipes/qwen3.6/vllm-dflash/qwen3.6-27b-fp8-dflash-512k-vllm.yaml) | [📊](assets/llama-benchy-results/@experimental_qwen3.6-27b-fp8-dflash-512k-vllm_v1.md) | 1396.1 | 26.9 | 708.6 | 86.7 |
-| [google_gemma-4-26b-a4b-fp8.yaml](recipe-registry/google_gemma-4-26b-a4b-fp8.yaml) | [📊](assets/llama-benchy-results/google_gemma-4-26b-a4b-fp8.md) | 5992.5 | 40.1 | 6753.1 | 77.3 |
-| [unsloth_qwen3.6-27b-nvfp4.yaml](recipe-registry/unsloth_qwen3.6-27b-nvfp4.yaml) | [📊](assets/llama-benchy-results/unsloth_qwen3.6-27b-nvfp4.md) | 1873.8 | 21.6 | 1916.5 | 74.5 |
-| [nvidia_gemma-4-26b-a4b-nvfp4.yaml](recipe-registry/nvidia_gemma-4-26b-a4b-nvfp4.yaml) | [📊](assets/llama-benchy-results/nvidia_gemma-4-26b-a4b-nvfp4.md) | 5994.6 | 30.0 | 6466.5 | 71.2 |
-| [crushleorey_qwopus3.6-27b-nvfp4.yaml](recipe-registry/crushleorey_qwopus3.6-27b-nvfp4.yaml) | [📊](assets/llama-benchy-results/crushleorey_qwopus3.6-27b-nvfp4.md) | 1886.7 | 21.0 | 2504.1 | 63.1 |
-| [jackrong_qwopus3.6-27b-coder-fp8.yaml](recipe-registry/jackrong_qwopus3.6-27b-coder-fp8.yaml) | [📊](assets/llama-benchy-results/jackrong_qwopus3.6-27b-coder-fp8.md) | — | — | 512.2 | 54.1 |
-| [jackrong_qwopus3.6-27b-v2-fp8.yaml](recipe-registry/jackrong_qwopus3.6-27b-v2-fp8.yaml) | [📊](assets/llama-benchy-results/jackrong_qwopus3.6-27b-v2-fp8.md) | 589.5 | 16.3 | 590.1 | 53.9 |
-| [nvidia_gemma-4-31b-nvfp4.yaml](recipe-registry/nvidia_gemma-4-31b-nvfp4.yaml) | [📊](assets/llama-benchy-results/nvidia_gemma-4-31b-nvfp4.md) | 1790.0 | 6.8 | 1788.8 | 19.3 |
-| [unsloth_qwen3.6-35b-a3b-nvfp4.yaml](recipe-registry/unsloth_qwen3.6-35b-a3b-nvfp4.yaml) | — | — | — | — | — |
+| [deepreinforce-ai_ornith-1.0-35b-fp8-nomtp.yaml](recipe-registry/deepreinforce-ai_ornith-1.0-35b-fp8-nomtp.yaml) | [📊](assets/llama-benchy-results/deepreinforce-ai_ornith-1.0-35b-fp8-nomtp.md) | 4936.5 | 39.6 | 5928.9 | 80.2 |
+| [jackrong_qwopus3.6-35b-a3b-coder-fp8.yaml](recipe-registry/jackrong_qwopus3.6-35b-a3b-coder-fp8.yaml) | [📊](assets/llama-benchy-results/jackrong_qwopus3.6-35b-a3b-coder-fp8.md) | 3987.7 | 51.5 | 4673.7 | 73.2 |
+| [qwen3.6-27b-fp8-dflash-vllm.yaml](https://github.com/spark-arena/recipe-registry/blob/main/experimental-recipes/qwen3.6/vllm-dflash/qwen3.6-27b-fp8-dflash-vllm.yaml) | [📊](assets/llama-benchy-results/@experimental_qwen3.6-27b-fp8-dflash-vllm.md) | 1486.5 | 31.8 | 880.5 | 69.7 |
+| [nvidia_qwen3.6-27b-nvfp4.yaml](recipe-registry/nvidia_qwen3.6-27b-nvfp4.yaml) | [📊](assets/llama-benchy-results/nvidia_qwen3.6-27b-nvfp4.md) | 1043.5 | 46.9 | 1080.6 | 57.1 |
+| [jackrong_qwopus3.6-27b-coder-fp8.yaml](recipe-registry/jackrong_qwopus3.6-27b-coder-fp8.yaml) | [📊](assets/llama-benchy-results/jackrong_qwopus3.6-27b-coder-fp8.md) | 643.3 | 17.6 | 533.2 | 53.3 |
+| [empero-ai_qwythos-9b-mythos.yaml](recipe-registry/empero-ai_qwythos-9b-mythos.yaml) | [📊](assets/llama-benchy-results/empero-ai_qwythos-9b-mythos.md) | 3366.8 | 23.8 | 3519.5 | 49.4 |
 
 ## Acknowledgements
 

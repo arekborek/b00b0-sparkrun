@@ -1,0 +1,50 @@
+recipe_version: "1"
+name: qwopus3.6-35b-a3b-coder-fp8
+model: Jackrong/Qwopus3.6-35B-A3B-Coder-FP8
+runtime: vllm
+container: ghcr.io/spark-arena/dgx-vllm-eugr-nightly:latest
+
+mods:
+  - mods/fix-qwen3-coder-next
+  - mods/fix-qwen3.5-chat-template
+
+metadata:
+  description: Qwopus3.6-35B-A3B-Coder FP8 E4M3 (Qwen fine-grained FP8, MoE) — thinking-off agentic coder, GB10
+
+defaults:
+  port: 8000
+  host: 0.0.0.0
+  tensor_parallel: 1
+  max_num_seqs: 16
+  gpu_memory_utilization: 0.85
+  max_model_len: 131072 #262144 
+  max_num_batched_tokens: 8192 #32768
+  kv_cache_dtype: fp8
+  mamba_cache_dtype: float32              # GDN recurrent state — precision-critical on hybrid MoE
+  tool_call_parser: qwen3_coder
+  reasoning_parser: qwen3
+  # NO quantization flag: Qwen fine-grained FP8 (per-expert + *_scale_inv) is auto-detected by vLLM
+  # NO speculative_config: the card documents plain FP8 only — no MTP head claimed
+
+env:
+  VLLM_MARLIN_USE_ATOMIC_ADD: "1"
+
+command: |
+  vllm serve {model} \
+    --host {host} \
+    --port {port} \
+    --served-model-name 'qwopus3.6-35b-coder' \
+    --max-model-len {max_model_len} \
+    --max-num-seqs {max_num_seqs} \
+    --max-num-batched-tokens {max_num_batched_tokens} \
+    --gpu-memory-utilization {gpu_memory_utilization} \
+    --kv-cache-dtype {kv_cache_dtype} \
+    --mamba-cache-dtype {mamba_cache_dtype} \
+    --trust-remote-code \
+    --enable-chunked-prefill \
+    --enable-prefix-caching \
+    --enable-auto-tool-choice \
+    --tool-call-parser {tool_call_parser} \
+    --reasoning-parser {reasoning_parser} \
+    --default-chat-template-kwargs '{"enable_thinking": false}' \
+    -tp {tensor_parallel}
