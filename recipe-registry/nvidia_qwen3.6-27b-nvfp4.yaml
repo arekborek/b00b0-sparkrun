@@ -1,10 +1,10 @@
-recipe_version: "1"
-model: Jackrong/Qwopus3.6-27B-v2-FP8
+recipe_version: "2"
+model: nvidia/Qwen3.6-27B-NVFP4
 runtime: vllm
 container: ghcr.io/spark-arena/dgx-vllm-eugr-nightly:latest
 
 metadata:
-  description: Qwen3.6-27B-FP8 — native FP8 format
+  description: Qwen3.6-27B-NVFP4 — native NVFP4 format
 
 mods:
   - mods/fix-qwen3-coder-next
@@ -15,24 +15,25 @@ defaults:
   host: 0.0.0.0
   tensor_parallel: 1
   pipeline_parallel: 1
-  gpu_memory_utilization: 0.7
-  max_model_len: 262144
-  max_num_batched_tokens: 32768
-  load_format: instanttensor
+  gpu_memory_utilization: 0.85
+  max_model_len: 131072 #262144 
+  max_num_batched_tokens: 8192 #32768
+  load_format: fastsafetensors  # instanttensor may crash dflash drafter loading
   kv_cache_dtype: fp8
   attention_backend: flashinfer
   tool_call_parser: qwen3_coder
   reasoning_parser: qwen3
-  speculative_config: '{"method": "mtp", "num_speculative_tokens": 3}'
+  speculative_config: '{"method": "dflash", "model": "z-lab/Qwen3.6-27B-DFlash", "num_speculative_tokens": 15}'
 
 env:
   VLLM_MARLIN_USE_ATOMIC_ADD: "1"
+  VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS: "0"  # memory calc may cause crashes
 
 command: |
   vllm serve {model} \
     --host {host} \
     --port {port} \
-    --served-model-name 'jackrong/qwopus3.6-27b' \
+    --served-model-name 'nvidia/qwen3.6-27b' \
     --max-model-len {max_model_len} \
     --max-num-batched-tokens {max_num_batched_tokens} \
     --trust-remote-code \
@@ -44,8 +45,7 @@ command: |
     --kv-cache-dtype {kv_cache_dtype} \
     --load-format {load_format} \
     --attention-backend {attention_backend} \
+    --speculative-config '{speculative_config}' \
     --enable-prefix-caching \
-    --speculative-config '{speculative_config}'\
     -tp {tensor_parallel} \
     -pp {pipeline_parallel}
-
