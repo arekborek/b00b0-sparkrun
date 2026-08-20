@@ -1,0 +1,45 @@
+recipe_version: "1"
+model: RedHatAI/Muse-Glimmer-30B-FP8-block
+runtime: vllm
+container: ghcr.io/spark-arena/dgx-vllm-eugr-nightly-tf5:latest  # TF5 — wymagane przez DFlash
+
+metadata:
+  description: Muse-Glimmer-30B FP8 (block) + DFlash speculative decoding
+
+mods:
+  - mods/fix-qwen3-coder-next
+  - mods/fix-qwen3.5-chat-template
+
+defaults:
+  port: 8000
+  host: 0.0.0.0
+  tensor_parallel: 1
+  pipeline_parallel: 1
+  gpu_memory_utilization: 0.85
+  max_model_len: 262144 #131072 
+  max_num_batched_tokens: 32768 #8192
+  load_format: instanttensor
+  kv_cache_dtype: fp8
+  attention_backend: flashinfer
+  speculative_config: '{"method":"dflash","model":"meta-models/Muse-Glimmer-30B-assistant","num_speculative_tokens":7}'
+
+env:
+  VLLM_MARLIN_USE_ATOMIC_ADD: "1"
+
+command: |
+  vllm serve {model} \
+    --host {host} \
+    --port {port} \
+    --served-model-name 'redhatai/muse-glimmer-30b' \
+    --max-model-len {max_model_len} \
+    --max-num-batched-tokens {max_num_batched_tokens} \
+    --trust-remote-code \
+    --chat-template unsloth.jinja \
+    --gpu-memory-utilization {gpu_memory_utilization} \
+    --kv-cache-dtype {kv_cache_dtype} \
+    --load-format {load_format} \
+    --attention-backend {attention_backend} \
+    --speculative-config '{speculative_config}' \
+    --enable-prefix-caching \
+    -tp {tensor_parallel} \
+    -pp {pipeline_parallel}
